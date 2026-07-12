@@ -8,8 +8,8 @@ const connectDB = require("./config/db");
 dotenv.config();
 
 // DNS Fix
-const dns = require("dns");
-dns.setServers(["8.8.8.8", "8.8.4.4"]);
+// const dns = require("dns");
+// dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 // Connect Database
 connectDB();
