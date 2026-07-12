@@ -25,10 +25,12 @@ const registerUser=async (req,res)=> {
 // name → Cookie name
 // value → Data stored in the cookie
 // options → Security and behavior settings    
-        res.cookie("token",token,{
-            httpOnly:true,
-        })
-
+        res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+});
 
         res.json({
             message:"registration succesful",
@@ -96,9 +98,12 @@ const loginUser=async (req,res)=> {
             expiresIn:"7d"
         })
 
-            res.cookie("token",token, {
-                httpOnly:true
-            })
+            res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+});
 
                 res.json({
                     message:"login succesfull",
@@ -120,8 +125,10 @@ const loginUser=async (req,res)=> {
 //logout user
 const logoutUser = (req, res) => {
 
-    res.clearCookie("token", {
-    httpOnly: true
+   res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
 });
 
     res.json({

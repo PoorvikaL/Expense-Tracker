@@ -18,10 +18,10 @@ const app = express();
 
 // Middlewares
 app.use(
-  cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true,
-  })
+    cors({
+        origin: "https://expense-tracker-bbc2.vercel.app",
+        credentials: true,
+    })
 );
 
 app.use(express.json());
@@ -42,6 +42,10 @@ app.use("/api/expenses", require("./routes/expense.routes"));
 
 const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => {
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
     console.log(`Server Running on ${PORT}`);
-});
+  });
+}
+
+module.exports = app;
