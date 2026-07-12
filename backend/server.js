@@ -18,15 +18,19 @@ const app = express();
 
 // Middlewares
 app.use(
-    cors({
-        origin: "http://localhost:5173", // React frontend
-        credentials: true
-    })
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })
 );
 
 app.use(express.json());
 
 app.use(cookieParser());
+
+app.get("/", (req, res) => {
+    res.send("Expense Tracker Backend Running 🚀");
+});
 
 // Routes
 app.use("/api/auth", require("./routes/auth.routes"));
